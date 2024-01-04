@@ -12,7 +12,40 @@
     inherit system;
   };
   in {
+
+    packages.container = pkgs.dockerTools.buildImage {
+      name = "wiki";
+      tag = "latest";
+      created = "now";
+
+      extraCommands = ''
+        ${pkgs.mkdocs}/bin/mkdocs build
+      '';
+
+      copyToRoot = pkgs.buildEnv {
+        name = "wiki";
+
+        paths = [
+          pkgs.caddy
+          # todo figure out how to ge mkdocs-material plugin working
+          (pkgs.python311.withPackages(ps: with ps; [
+            mkdocs mkdocs-material mkdocs-material-extensions
+          ]))
+          ./. # copy current working directory into image TODO copy this into a sub path so resulting image root is cleaner
+        ];
+      };
+
+      config = {
+        Cmd = [ "${pkgs.caddy}/bin/caddy" "file-server" "-r" "/site" ];
+        ExposedPorts = {
+          "80/tcp" = { };
+        };
+      };
+
+    };
+
     packages.default = pkgs.stdenv.mkDerivation {
+    # wiki = pkgs.stdenv.mkDerivation {
       name = "wiki";
 
       src = ./.;
@@ -25,8 +58,9 @@
         pkgs.mkdocs
         pkgs.python311Packages.mkdocs-material            # materials theme
         pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
-        pkgs.gnutar                                       # for generating zip file on line 35 which is currently commented out
+        # pkgs.gnutar                                       # for generating zip file on line 35 which is currently commented out
       ];
+
         
       # run build command
       # create output directory (this is what gets copied into the ./result path)

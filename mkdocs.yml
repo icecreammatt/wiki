@@ -10,7 +10,8 @@ theme:
     - navigation.expand
     - content.action.edit
 
-  name: material
+  name: mkdocs
+  # name: material
   palette:
 
   # Palette toggle for dark mode
