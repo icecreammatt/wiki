@@ -17,15 +17,21 @@
 
       src = ./.;
 
+      # Set this to true so the make command does not run by default
+      # and fail because makefile is not in repo
       buildPhase = "true";
 
       buildInputs = [
         pkgs.mkdocs
-        pkgs.python311Packages.mkdocs-material
-        pkgs.python311Packages.mkdocs-material-extensions
-        pkgs.gnutar
+        pkgs.python311Packages.mkdocs-material            # materials theme
+        pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
+        pkgs.gnutar                                       # for generating zip file on line 35 which is currently commented out
       ];
         
+      # run build command
+      # create output directory (this is what gets copied into the ./result path)
+      # copy contents to output
+      # zip contents
       installPhase = ''
         mkdocs build
         mkdir -p $out/www
@@ -35,9 +41,9 @@
 
       packages = with pkgs; [
         mkdocs
-        python311Packages.mkdocs-material
-        python311Packages.mkdocs-material-extensions
-        gnutar
+        python311Packages.mkdocs-material            # materials theme
+        python311Packages.mkdocs-material-extensions # extensions plugin
+        gnutar                                       # for generating zip file on line 35 which is currently commented out
       ];
       
     };
@@ -45,6 +51,8 @@
     devShells.default = pkgs.mkShell rec {
       name = "wiki";
 
+      # Set this to true so the make command does not run by default
+      # and fail because makefile is not in repo
       buildPhase = "true";
 
       shellHook = ''
@@ -53,9 +61,9 @@
 
       packages = with pkgs; [
         mkdocs
-        python311Packages.mkdocs-material
-        python311Packages.mkdocs-material-extensions
-        gnutar
+        python311Packages.mkdocs-material            # materials theme
+        python311Packages.mkdocs-material-extensions # extensions plugin
+        gnutar                                       # for generating zip file on line 35 which is currently commented out
       ];
     };
   });
