@@ -1,3 +1,29 @@
-site_name: My Docs
+site_name: Wiki
+edit_uri: edit/main/docs/
+extra:
+  generator: false
 theme:
+  icon:
+    edit: material/pencil
+    view: material/eye
+  features:
+    - navigation.expand
+    - content.action.edit
+
   name: material
+  palette:
+
+  # Palette toggle for dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to light mode
+
+  - scheme: default
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to dark mode
+
