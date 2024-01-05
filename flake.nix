@@ -20,7 +20,7 @@
     });
   };
   in {
-    hydraJobs."tester" = self.packages.container;
+    hydraJobs."tester" = self.defaultPackage;
 
     packages.container = pkgs.dockerTools.buildImage {
       name = "wiki";
@@ -54,7 +54,7 @@
       };
     };
 
-    packages.default = pkgs.stdenv.mkDerivation {
+    defaultPackage = pkgs.stdenv.mkDerivation {
     # wiki = pkgs.stdenv.mkDerivation {
       name = "wiki";
 
