@@ -21,7 +21,7 @@
   };
   in {
     hydraJobs."tester" = self.defaultPackage;
-    hydraJobs."tester-container" = self.container;
+    # hydraJobs."tester-container" = self.container;
 
     packages.container = pkgs.dockerTools.buildImage {
       name = "wiki";
