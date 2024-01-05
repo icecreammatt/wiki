@@ -10,30 +10,39 @@
   ] (system: let 
   pkgs = import nixpkgs {
     inherit system;
+    # Add overlay here to inject the mkdocs-material and extensions plugin
+    nixpkgs.overlays = (self: super: {
+      mkdocs = super.mkdocs.override {
+        propogatedBuildInputs = [super.mkdocs.propogatedBuildInputs]
+          ++ pkgs.python311Packages.mkdocs-material
+          ++ pkgs.python311Packages.mkdocs-material-extensions;
+      };
+    });
   };
   in {
-
     packages.container = pkgs.dockerTools.buildImage {
       name = "wiki";
       tag = "latest";
+      # created = builtins.substring 0 8 self.lastModifiedDate; # this is recommended instead of using "now" the docs but throws a parser error
       created = "now";
 
+      # The withPackages bit in the extra command adds the other packages
+      # to the scope of this nix package. Not sure why this is needed to be done
+      # this way here. It appears to ignore the overlay defined above despite
+      # working below for the default nix build command
       extraCommands = ''
-        ${pkgs.mkdocs}/bin/mkdocs build
+        ${(pkgs.python311.withPackages(ps: with ps; [
+          mkdocs mkdocs-material mkdocs-material-extensions
+        ]))}/bin/mkdocs build
       '';
 
       copyToRoot = pkgs.buildEnv {
         name = "wiki";
-
         paths = [
-          pkgs.caddy
-          # todo figure out how to ge mkdocs-material plugin working
-          (pkgs.python311.withPackages(ps: with ps; [
-            mkdocs mkdocs-material mkdocs-material-extensions
-          ]))
           ./. # copy current working directory into image TODO copy this into a sub path so resulting image root is cleaner
         ];
       };
+
 
       config = {
         Cmd = [ "${pkgs.caddy}/bin/caddy" "file-server" "-r" "/site" ];
@@ -41,7 +50,6 @@
           "80/tcp" = { };
         };
       };
-
     };
 
     packages.default = pkgs.stdenv.mkDerivation {
@@ -58,7 +66,6 @@
         pkgs.mkdocs
         pkgs.python311Packages.mkdocs-material            # materials theme
         pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
-        # pkgs.gnutar                                       # for generating zip file on line 35 which is currently commented out
       ];
 
         
@@ -67,18 +74,16 @@
       # copy contents to output
       # zip contents
       installPhase = ''
-        mkdocs build
+        ${pkgs.mkdocs}/bin/mkdocs build
         mkdir -p $out/www
         cp -r site/* $out/www
-        # tar cfzv $out/site.tgz site/
       '';
 
-      packages = with pkgs; [
-        mkdocs
-        python311Packages.mkdocs-material            # materials theme
-        python311Packages.mkdocs-material-extensions # extensions plugin
-        gnutar                                       # for generating zip file on line 35 which is currently commented out
-      ];
+      # packages = with pkgs; [
+      #   mkdocs
+      #   python311Packages.mkdocs-material            # materials theme
+      #   python311Packages.mkdocs-material-extensions # extensions plugin
+      # ];
       
     };
     
@@ -90,15 +95,20 @@
       buildPhase = "true";
 
       shellHook = ''
-        mkdocs build
+        ${pkgs.mkdocs}/bin/mkdocs build
       '';      
 
-      packages = with pkgs; [
-        mkdocs
-        python311Packages.mkdocs-material            # materials theme
-        python311Packages.mkdocs-material-extensions # extensions plugin
-        gnutar                                       # for generating zip file on line 35 which is currently commented out
+      # this is used instead of packages 
+      nativeBuildInputs = [
+        pkgs.python311Packages.mkdocs-material            # materials theme
+        pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
       ];
+
+      # packages = with pkgs; [
+      #   mkdocs
+      #   python311Packages.mkdocs-material            # materials theme
+      #   python311Packages.mkdocs-material-extensions # extensions plugin
+      # ];
     };
   });
 }
