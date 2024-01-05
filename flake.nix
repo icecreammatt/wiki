@@ -20,7 +20,7 @@
     });
   };
   in {
-    hydraJobs."tester" = self.defaultPackage;
+    hydraJobs."tester" = self.packages.container;
 
     packages.container = pkgs.dockerTools.buildImage {
       name = "wiki";
