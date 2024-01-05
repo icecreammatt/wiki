@@ -20,6 +20,8 @@
     });
   };
   in {
+    hydraJobs."tester" = self.defaultPackage;
+
     packages.container = pkgs.dockerTools.buildImage {
       name = "wiki";
       tag = "latest";
