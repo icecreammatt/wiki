@@ -68,7 +68,6 @@
         pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
       ];
 
-        
       # run build command
       # create output directory (this is what gets copied into the ./result path)
       # copy contents to output
@@ -78,13 +77,6 @@
         mkdir -p $out/www
         cp -r site/* $out/www
       '';
-
-      # packages = with pkgs; [
-      #   mkdocs
-      #   python311Packages.mkdocs-material            # materials theme
-      #   python311Packages.mkdocs-material-extensions # extensions plugin
-      # ];
-      
     };
     
     devShells.default = pkgs.mkShell rec {
@@ -103,12 +95,6 @@
         pkgs.python311Packages.mkdocs-material            # materials theme
         pkgs.python311Packages.mkdocs-material-extensions # extensions plugin
       ];
-
-      # packages = with pkgs; [
-      #   mkdocs
-      #   python311Packages.mkdocs-material            # materials theme
-      #   python311Packages.mkdocs-material-extensions # extensions plugin
-      # ];
     };
   });
 }
