@@ -24,7 +24,7 @@
     # hydraJobs."tester-container" = self.container;
 
     packages.container = pkgs.dockerTools.buildImage {
-      name = "wiki";
+      name = "gitea.c4er.com/matt/wiki";
       tag = "latest";
       # created = builtins.substring 0 8 self.lastModifiedDate; # this is recommended instead of using "now" the docs but throws a parser error
       created = "now";
