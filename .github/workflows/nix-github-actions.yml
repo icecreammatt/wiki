@@ -26,9 +26,9 @@ jobs:
       - run: ls -la ./
       - run: git fetch origin gh-pages
       - run: git checkout gh-pages
-      - run: rm -fr www
-      - run: cp -r ./result/www www
-      - run: git add www
+      - run: rm -fr docs
+      - run: cp -r ./result/www docs
+      - run: git add docs
       - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
       - run: git config --global user.email "actions.bot@github.com"
       - run: git config --global user.name "Matt Carrier"
