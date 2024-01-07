@@ -1,7 +1,13 @@
 site_name: Wiki
+site_url: ''
+use_directory_urls: true
 edit_uri: edit/main/docs/
 extra:
   generator: false
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 theme:
   icon:
     edit: material/pencil
