@@ -2,10 +2,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nix-github-actions.url = "github:nix-community/nix-github-actions";
+    nix-github-actions.inputs.nixpkgs.follows = "nixpkgs";
+
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ... } @inputs: inputs.utils.lib.eachSystem [
+  outputs = { self, nixpkgs, nix-github-actions, ... } @inputs: inputs.utils.lib.eachSystem [
     "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"
   ] (system: let 
   pkgs = import nixpkgs {
@@ -20,6 +23,10 @@
     });
   };
   in {
+    githubActions = nix-github-actions.lib.mkGithubMatrix { checks = self.packages; };
+    # packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+
     hydraJobs."tester" = self.defaultPackage;
     # hydraJobs."tester-container" = self.container;
 
