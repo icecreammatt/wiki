@@ -1,1 +1,3 @@
 # HomeLab wiki
+
+Welcome!
