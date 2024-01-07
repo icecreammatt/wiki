@@ -19,11 +19,6 @@ jobs:
       - id: build
         name: nix build
         run: nix build
-
-  nix-deploy:
-    runs-on: ubuntu-latest
-    needs: nix-build
-    steps:
       - run: ls result/www
       - run: ls -la ./
       - run: git fetch origin gh-pages
