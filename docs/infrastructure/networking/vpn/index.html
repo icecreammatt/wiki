@@ -433,6 +433,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#setup-client" class="md-nav__link">
+    Setup client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificates" class="md-nav__link">
+    Create certificates
+  </a>
+  
+    <nav class="md-nav" aria-label="Create certificates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-config-to-clients" class="md-nav__link">
+    Adding config to clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding config to clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-configs" class="md-nav__link">
+    Client Configs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configyaml" class="md-nav__link">
+    config.yaml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-service" class="md-nav__link">
+    Systemd Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-renewal" class="md-nav__link">
+    Certificate renewal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -740,6 +801,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#setup-client" class="md-nav__link">
+    Setup client
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-certificates" class="md-nav__link">
+    Create certificates
+  </a>
+  
+    <nav class="md-nav" aria-label="Create certificates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-config-to-clients" class="md-nav__link">
+    Adding config to clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding config to clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-configs" class="md-nav__link">
+    Client Configs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configyaml" class="md-nav__link">
+    config.yaml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemd-service" class="md-nav__link">
+    Systemd Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-renewal" class="md-nav__link">
+    Certificate renewal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -815,7 +937,406 @@
 </tr>
 </tbody>
 </table>
+<h2 id="setup-client">Setup client</h2>
+<p><a href="https://nebula.defined.net/docs/guides/quick-start/">Docs</a></p>
+<ul>
+<li>Install nebula from package manager (nix,pacman,snap)</li>
+</ul>
+<h2 id="create-certificates">Create certificates</h2>
+<div class="highlight"><pre><span></span><code>nebula-cert<span class="w"> </span>sign<span class="w"> </span>-name<span class="w"> </span><span class="nv">$HOSTNAME</span><span class="w"> </span>-ip<span class="w"> </span><span class="s2">&quot;192.168.100.XX/24&quot;</span><span class="w"> </span>-groups<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOSTNAME</span><span class="s2">,</span><span class="nv">$GROUPNAME</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="adding-config-to-clients">Adding config to clients</h3>
+<p>Copy config files generated above onto client machines to <code>/etc/nebula</code></p>
+<blockquote>
+<p><em>DO NOT COPY <code>ca.key</code></em></p>
+</blockquote>
+<h4 id="client-configs">Client Configs</h4>
+<blockquote>
+<p>/etc/nebula/</p>
+</blockquote>
+<ul>
+<li><code>ca.crt</code></li>
+<li><code>config.yaml</code></li>
+<li><code>octoprint.crt</code></li>
+<li><code>octoprint.key</code></li>
+</ul>
+<h4 id="configyaml">config.yaml</h4>
+<ul>
+<li>Replace following vaules in config:</li>
+<li><code>$LIGHTHOUSE_PUBLIC_IP</code></li>
+<li><code>$HOSTNAME</code></li>
+<li><code>$GROUPNAME</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is the nebula example configuration file. You must edit, at a minimum, the static_host_map, lighthouse, and firewall sections</span>
+<span class="c1"># Some options in this file are HUPable, including the pki section. (A HUP will reload credentials from disk without affecting existing tunnels)</span>
+
+<span class="c1"># PKI defines the location of credentials for this node. Each of these can also be inlined by using the yaml &quot;: |&quot; syntax.</span>
+<span class="nt">pki</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># The CAs that are accepted by this node. Must contain one or more certificates created by &#39;nebula-cert ca&#39;</span>
+<span class="w">  </span><span class="nt">ca</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nebula/ca.crt</span>
+<span class="w">  </span><span class="nt">cert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nebula/$HOSTNAME.crt</span>
+<span class="w">  </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nebula/$HOSTNAME.key</span>
+<span class="w">  </span><span class="c1"># blocklist is a list of certificate fingerprints that we will refuse to talk to</span>
+<span class="w">  </span><span class="c1">#blocklist:</span>
+<span class="w">  </span><span class="c1">#  - c99d4e650533b92061b09918e838a5a0a6aaee21eed1d12fd937682865936c72</span>
+<span class="w">  </span><span class="c1"># disconnect_invalid is a toggle to force a client to be disconnected if the certificate is expired or invalid.</span>
+<span class="w">  </span><span class="c1">#disconnect_invalid: false</span>
+
+<span class="c1"># The static host map defines a set of hosts with fixed IP addresses on the internet (or any network).</span>
+<span class="c1"># A host can have multiple fixed IP addresses defined here, and nebula will try each when establishing a tunnel.</span>
+<span class="c1"># The syntax is:</span>
+<span class="c1">#   &quot;{nebula ip}&quot;: [&quot;{routable ip/dns name}:{routable port}&quot;]</span>
+<span class="c1"># Example, if your lighthouse has the nebula IP of 192.168.100.1 and has the real ip address of 100.64.22.11 and runs on port 4242:</span>
+<span class="nt">static_host_map</span><span class="p">:</span>
+<span class="w">  </span><span class="s">&quot;192.168.100.1&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;$LIGHTHOUSE_PUBLIC_IP:4242&quot;</span><span class="p p-Indicator">]</span>
+
+
+<span class="nt">lighthouse</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># am_lighthouse is used to enable lighthouse functionality for a node. This should ONLY be true on nodes</span>
+<span class="w">  </span><span class="c1"># you have configured to be lighthouses in your network</span>
+<span class="w">  </span><span class="nt">am_lighthouse</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># serve_dns optionally starts a dns listener that responds to various queries and can even be</span>
+<span class="w">  </span><span class="c1"># delegated to for resolution</span>
+<span class="w">  </span><span class="c1">#serve_dns: false</span>
+<span class="w">  </span><span class="c1">#dns:</span>
+<span class="w">    </span><span class="c1"># The DNS host defines the IP to bind the dns listener to. This also allows binding to the nebula node IP.</span>
+<span class="w">    </span><span class="c1">#host: 0.0.0.0</span>
+<span class="w">    </span><span class="c1">#port: 53</span>
+<span class="w">  </span><span class="c1"># interval is the number of seconds between updates from this node to a lighthouse.</span>
+<span class="w">  </span><span class="c1"># during updates, a node sends information about its current IP addresses to each node.</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">  </span><span class="c1"># hosts is a list of lighthouse hosts this node should report to and query from</span>
+<span class="w">  </span><span class="c1"># IMPORTANT: THIS SHOULD BE EMPTY ON LIGHTHOUSE NODES</span>
+<span class="w">  </span><span class="c1"># IMPORTANT2: THIS SHOULD BE LIGHTHOUSES&#39; NEBULA IPs, NOT LIGHTHOUSES&#39; REAL ROUTABLE IPs</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;192.168.100.1&quot;</span>
+
+<span class="w">  </span><span class="c1"># remote_allow_list allows you to control ip ranges that this node will</span>
+<span class="w">  </span><span class="c1"># consider when handshaking to another node. By default, any remote IPs are</span>
+<span class="w">  </span><span class="c1"># allowed. You can provide CIDRs here with `true` to allow and `false` to</span>
+<span class="w">  </span><span class="c1"># deny. The most specific CIDR rule applies to each remote. If all rules are</span>
+<span class="w">  </span><span class="c1"># &quot;allow&quot;, the default will be &quot;deny&quot;, and vice-versa. If both &quot;allow&quot; and</span>
+<span class="w">  </span><span class="c1"># &quot;deny&quot; IPv4 rules are present, then you MUST set a rule for &quot;0.0.0.0/0&quot; as</span>
+<span class="w">  </span><span class="c1"># the default. Similarly if both &quot;allow&quot; and &quot;deny&quot; IPv6 rules are present,</span>
+<span class="w">  </span><span class="c1"># then you MUST set a rule for &quot;::/0&quot; as the default.</span>
+<span class="w">  </span><span class="c1">#remote_allow_list:</span>
+<span class="w">    </span><span class="c1"># Example to block IPs from this subnet from being used for remote IPs.</span>
+<span class="w">    </span><span class="c1">#&quot;172.16.0.0/12&quot;: false</span>
+
+<span class="w">    </span><span class="c1"># A more complicated example, allow public IPs but only private IPs from a specific subnet</span>
+<span class="w">    </span><span class="c1">#&quot;0.0.0.0/0&quot;: true</span>
+<span class="w">    </span><span class="c1">#&quot;10.0.0.0/8&quot;: false</span>
+<span class="w">    </span><span class="c1">#&quot;10.42.42.0/24&quot;: true</span>
+
+<span class="w">  </span><span class="c1"># EXPERIMENTAL: This option may change or disappear in the future.</span>
+<span class="w">  </span><span class="c1"># Optionally allows the definition of remote_allow_list blocks</span>
+<span class="w">  </span><span class="c1"># specific to an inside VPN IP CIDR.</span>
+<span class="w">  </span><span class="c1">#remote_allow_ranges:</span>
+<span class="w">    </span><span class="c1"># This rule would only allow only private IPs for this VPN range</span>
+<span class="w">    </span><span class="c1">#&quot;10.42.42.0/24&quot;:</span>
+<span class="w">      </span><span class="c1">#&quot;192.168.0.0/16&quot;: true</span>
+
+<span class="w">  </span><span class="c1"># local_allow_list allows you to filter which local IP addresses we advertise</span>
+<span class="w">  </span><span class="c1"># to the lighthouses. This uses the same logic as `remote_allow_list`, but</span>
+<span class="w">  </span><span class="c1"># additionally, you can specify an `interfaces` map of regular expressions</span>
+<span class="w">  </span><span class="c1"># to match against interface names. The regexp must match the entire name.</span>
+<span class="w">  </span><span class="c1"># All interface rules must be either true or false (and the default will be</span>
+<span class="w">  </span><span class="c1"># the inverse). CIDR rules are matched after interface name rules.</span>
+<span class="w">  </span><span class="c1"># Default is all local IP addresses.</span>
+<span class="w">  </span><span class="c1">#local_allow_list:</span>
+<span class="w">    </span><span class="c1"># Example to block tun0 and all docker interfaces.</span>
+<span class="w">    </span><span class="c1">#interfaces:</span>
+<span class="w">      </span><span class="c1">#tun0: false</span>
+<span class="w">      </span><span class="c1">#&#39;docker.*&#39;: false</span>
+<span class="w">    </span><span class="c1"># Example to only advertise this subnet to the lighthouse.</span>
+<span class="w">    </span><span class="c1">#&quot;10.0.0.0/8&quot;: true</span>
+
+<span class="w">  </span><span class="c1"># advertise_addrs are routable addresses that will be included along with discovered addresses to report to the</span>
+<span class="w">  </span><span class="c1"># lighthouse, the format is &quot;ip:port&quot;. `port` can be `0`, in which case the actual listening port will be used in its</span>
+<span class="w">  </span><span class="c1"># place, useful if `listen.port` is set to 0.</span>
+<span class="w">  </span><span class="c1"># This option is mainly useful when there are static ip addresses the host can be reached at that nebula can not</span>
+<span class="w">  </span><span class="c1"># typically discover on its own. Examples being port forwarding or multiple paths to the internet.</span>
+<span class="w">  </span><span class="c1">#advertise_addrs:</span>
+<span class="w">    </span><span class="c1">#- &quot;1.1.1.1:4242&quot;</span>
+<span class="w">    </span><span class="c1">#- &quot;1.2.3.4:0&quot; # port will be replaced with the real listening port</span>
+
+<span class="w">  </span><span class="c1"># EXPERIMENTAL: This option may change or disappear in the future.</span>
+<span class="w">  </span><span class="c1"># This setting allows us to &quot;guess&quot; what the remote might be for a host</span>
+<span class="w">  </span><span class="c1"># while we wait for the lighthouse response.</span>
+<span class="w">  </span><span class="c1">#calculated_remotes:</span>
+<span class="w">    </span><span class="c1"># For any Nebula IPs in 10.0.10.0/24, this will apply the mask and add</span>
+<span class="w">    </span><span class="c1"># the calculated IP as an initial remote (while we wait for the response</span>
+<span class="w">    </span><span class="c1"># from the lighthouse). Both CIDRs must have the same mask size.</span>
+<span class="w">    </span><span class="c1"># For example, Nebula IP 10.0.10.123 will have a calculated remote of</span>
+<span class="w">    </span><span class="c1"># 192.168.1.123</span>
+<span class="w">    </span><span class="c1">#10.0.10.0/24:</span>
+<span class="w">      </span><span class="c1">#- mask: 192.168.1.0/24</span>
+<span class="w">      </span><span class="c1">#  port: 4242</span>
+
+<span class="c1"># Port Nebula will be listening on. The default here is 4242. For a lighthouse node, the port should be defined,</span>
+<span class="c1"># however using port 0 will dynamically assign a port and is recommended for roaming nodes.</span>
+<span class="nt">listen</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># To listen on both any ipv4 and ipv6 use &quot;::&quot;</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4242</span>
+<span class="w">  </span><span class="c1"># Sets the max number of packets to pull from the kernel for each syscall (under systems that support recvmmsg)</span>
+<span class="w">  </span><span class="c1"># default is 64, does not support reload</span>
+<span class="w">  </span><span class="c1">#batch: 64</span>
+<span class="w">  </span><span class="c1"># Configure socket buffers for the udp side (outside), leave unset to use the system defaults. Values will be doubled by the kernel</span>
+<span class="w">  </span><span class="c1"># Default is net.core.rmem_default and net.core.wmem_default (/proc/sys/net/core/rmem_default and /proc/sys/net/core/rmem_default)</span>
+<span class="w">  </span><span class="c1"># Maximum is limited by memory in the system, SO_RCVBUFFORCE and SO_SNDBUFFORCE is used to avoid having to raise the system wide</span>
+<span class="w">  </span><span class="c1"># max, net.core.rmem_max and net.core.wmem_max</span>
+<span class="w">  </span><span class="c1">#read_buffer: 10485760</span>
+<span class="w">  </span><span class="c1">#write_buffer: 10485760</span>
+<span class="w">  </span><span class="c1"># By default, Nebula replies to packets it has no tunnel for with a &quot;recv_error&quot; packet. This packet helps speed up reconnection</span>
+<span class="w">  </span><span class="c1"># in the case that Nebula on either side did not shut down cleanly. This response can be abused as a way to discover if Nebula is running</span>
+<span class="w">  </span><span class="c1"># on a host though. This option lets you configure if you want to send &quot;recv_error&quot; packets always, never, or only to private network remotes.</span>
+<span class="w">  </span><span class="c1"># valid values: always, never, private</span>
+<span class="w">  </span><span class="c1"># This setting is reloadable.</span>
+<span class="w">  </span><span class="c1">#send_recv_error: always</span>
+
+<span class="c1"># Routines is the number of thread pairs to run that consume from the tun and UDP queues.</span>
+<span class="c1"># Currently, this defaults to 1 which means we have 1 tun queue reader and 1</span>
+<span class="c1"># UDP queue reader. Setting this above one will set IFF_MULTI_QUEUE on the tun</span>
+<span class="c1"># device and SO_REUSEPORT on the UDP socket to allow multiple queues.</span>
+<span class="c1"># This option is only supported on Linux.</span>
+<span class="c1">#routines: 1</span>
+
+<span class="nt">punchy</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Continues to punch inbound/outbound at a regular interval to avoid expiration of firewall nat mappings</span>
+<span class="w">  </span><span class="nt">punch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="c1"># respond means that a node you are trying to reach will connect back out to you if your hole punching fails</span>
+<span class="w">  </span><span class="c1"># this is extremely useful if one node is behind a difficult nat, such as a symmetric NAT</span>
+<span class="w">  </span><span class="c1"># Default is false</span>
+<span class="w">  </span><span class="c1">#respond: true</span>
+
+<span class="w">  </span><span class="c1"># delays a punch response for misbehaving NATs, default is 1 second.</span>
+<span class="w">  </span><span class="c1">#delay: 1s</span>
+
+<span class="w">  </span><span class="c1"># set the delay before attempting punchy.respond. Default is 5 seconds. respond must be true to take effect.</span>
+<span class="w">  </span><span class="c1">#respond_delay: 5s</span>
+
+<span class="c1"># Cipher allows you to choose between the available ciphers for your network. Options are chachapoly or aes</span>
+<span class="c1"># IMPORTANT: this value must be identical on ALL NODES/LIGHTHOUSES. We do not/will not support use of different ciphers simultaneously!</span>
+<span class="c1">#cipher: aes</span>
+
+<span class="c1"># Preferred ranges is used to define a hint about the local network ranges, which speeds up discovering the fastest</span>
+<span class="c1"># path to a network adjacent nebula node.</span>
+<span class="c1"># NOTE: the previous option &quot;local_range&quot; only allowed definition of a single range</span>
+<span class="c1"># and has been deprecated for &quot;preferred_ranges&quot;</span>
+<span class="c1">#preferred_ranges: [&quot;172.16.0.0/24&quot;]</span>
+
+<span class="c1"># sshd can expose informational and administrative functions via ssh this is a</span>
+<span class="c1">#sshd:</span>
+<span class="w">  </span><span class="c1"># Toggles the feature</span>
+<span class="w">  </span><span class="c1">#enabled: true</span>
+<span class="w">  </span><span class="c1"># Host and port to listen on, port 22 is not allowed for your safety</span>
+<span class="w">  </span><span class="c1">#listen: 127.0.0.1:2222</span>
+<span class="w">  </span><span class="c1"># A file containing the ssh host private key to use</span>
+<span class="w">  </span><span class="c1"># A decent way to generate one: ssh-keygen -t ed25519 -f ssh_host_ed25519_key -N &quot;&quot; &lt; /dev/null</span>
+<span class="w">  </span><span class="c1">#host_key: ./ssh_host_ed25519_key</span>
+<span class="w">  </span><span class="c1"># A file containing a list of authorized public keys</span>
+<span class="w">  </span><span class="c1">#authorized_users:</span>
+<span class="w">    </span><span class="c1">#- user: steeeeve</span>
+<span class="w">      </span><span class="c1"># keys can be an array of strings or single string</span>
+<span class="w">      </span><span class="c1">#keys:</span>
+<span class="w">        </span><span class="c1">#- &quot;ssh public key string&quot;</span>
+
+<span class="c1"># EXPERIMENTAL: relay support for networks that can&#39;t establish direct connections.</span>
+<span class="nt">relay</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Relays are a list of Nebula IP&#39;s that peers can use to relay packets to me.</span>
+<span class="w">  </span><span class="c1"># IPs in this list must have am_relay set to true in their configs, otherwise</span>
+<span class="w">  </span><span class="c1"># they will reject relay requests.</span>
+<span class="w">  </span><span class="c1">#relays:</span>
+<span class="w">    </span><span class="c1">#- 192.168.100.1</span>
+<span class="w">    </span><span class="c1">#- &lt;other Nebula VPN IPs of hosts used as relays to access me&gt;</span>
+<span class="w">  </span><span class="c1"># Set am_relay to true to permit other hosts to list my IP in their relays config. Default false.</span>
+<span class="w">  </span><span class="nt">am_relay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># Set use_relays to false to prevent this instance from attempting to establish connections through relays.</span>
+<span class="w">  </span><span class="c1"># default true</span>
+<span class="w">  </span><span class="nt">use_relays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Configure the private interface. Note: addr is baked into the nebula certificate</span>
+<span class="nt">tun</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># When tun is disabled, a lighthouse can be started without a local tun interface (and therefore without root)</span>
+<span class="w">  </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># Name of the device. If not set, a default will be chosen by the OS.</span>
+<span class="w">  </span><span class="c1"># For macOS: if set, must be in the form `utun[0-9]+`.</span>
+<span class="w">  </span><span class="c1"># For FreeBSD: Required to be set, must be in the form `tun[0-9]+`.</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula1</span>
+<span class="w">  </span><span class="c1"># Toggles forwarding of local broadcast packets, the address of which depends on the ip/mask encoded in pki.cert</span>
+<span class="w">  </span><span class="nt">drop_local_broadcast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># Toggles forwarding of multicast packets</span>
+<span class="w">  </span><span class="nt">drop_multicast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># Sets the transmit queue length, if you notice lots of transmit drops on the tun it may help to raise this number. Default is 500</span>
+<span class="w">  </span><span class="nt">tx_queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="w">  </span><span class="c1"># Default MTU for every packet, safe setting is (and the default) 1300 for internet based traffic</span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1300</span>
+
+<span class="w">  </span><span class="c1"># Route based MTU overrides, you have known vpn ip paths that can support larger MTUs you can increase/decrease them here</span>
+<span class="w">  </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">    </span><span class="c1">#- mtu: 8800</span>
+<span class="w">    </span><span class="c1">#  route: 10.0.0.0/16</span>
+
+<span class="w">  </span><span class="c1"># Unsafe routes allows you to route traffic over nebula to non-nebula nodes</span>
+<span class="w">  </span><span class="c1"># Unsafe routes should be avoided unless you have hosts/services that cannot run nebula</span>
+<span class="w">  </span><span class="c1"># NOTE: The nebula certificate of the &quot;via&quot; node *MUST* have the &quot;route&quot; defined as a subnet in its certificate</span>
+<span class="w">  </span><span class="c1"># `mtu`: will default to tun mtu if this option is not specified</span>
+<span class="w">  </span><span class="c1"># `metric`: will default to 0 if this option is not specified</span>
+<span class="w">  </span><span class="c1"># `install`: will default to true, controls whether this route is installed in the systems routing table.</span>
+<span class="w">  </span><span class="nt">unsafe_routes</span><span class="p">:</span>
+<span class="w">    </span><span class="c1">#- route: 172.16.1.0/24</span>
+<span class="w">    </span><span class="c1">#  via: 192.168.100.99</span>
+<span class="w">    </span><span class="c1">#  mtu: 1300</span>
+<span class="w">    </span><span class="c1">#  metric: 100</span>
+<span class="w">    </span><span class="c1">#  install: true</span>
+
+<span class="c1"># TODO</span>
+<span class="c1"># Configure logging level</span>
+<span class="nt">logging</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># panic, fatal, error, warning, info, or debug. Default is info</span>
+<span class="w">  </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info</span>
+<span class="w">  </span><span class="c1"># json or text formats currently available. Default is text</span>
+<span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span>
+<span class="w">  </span><span class="c1"># Disable timestamp logging. useful when output is redirected to logging system that already adds timestamps. Default is false</span>
+<span class="w">  </span><span class="c1">#disable_timestamp: true</span>
+<span class="w">  </span><span class="c1"># timestamp format is specified in Go time format, see:</span>
+<span class="w">  </span><span class="c1">#     https://golang.org/pkg/time/#pkg-constants</span>
+<span class="w">  </span><span class="c1"># default when `format: json`: &quot;2006-01-02T15:04:05Z07:00&quot; (RFC3339)</span>
+<span class="w">  </span><span class="c1"># default when `format: text`:</span>
+<span class="w">  </span><span class="c1">#     when TTY attached: seconds since beginning of execution</span>
+<span class="w">  </span><span class="c1">#     otherwise: &quot;2006-01-02T15:04:05Z07:00&quot; (RFC3339)</span>
+<span class="w">  </span><span class="c1"># As an example, to log as RFC3339 with millisecond precision, set to:</span>
+<span class="w">  </span><span class="c1">#timestamp_format: &quot;2006-01-02T15:04:05.000Z07:00&quot;</span>
+
+<span class="c1">#stats:</span>
+<span class="w">  </span><span class="c1">#type: graphite</span>
+<span class="w">  </span><span class="c1">#prefix: nebula</span>
+<span class="w">  </span><span class="c1">#protocol: tcp</span>
+<span class="w">  </span><span class="c1">#host: 127.0.0.1:9999</span>
+<span class="w">  </span><span class="c1">#interval: 10s</span>
+
+<span class="w">  </span><span class="c1">#type: prometheus</span>
+<span class="w">  </span><span class="c1">#listen: 127.0.0.1:8080</span>
+<span class="w">  </span><span class="c1">#path: /metrics</span>
+<span class="w">  </span><span class="c1">#namespace: prometheusns</span>
+<span class="w">  </span><span class="c1">#subsystem: nebula</span>
+<span class="w">  </span><span class="c1">#interval: 10s</span>
+
+<span class="w">  </span><span class="c1"># enables counter metrics for meta packets</span>
+<span class="w">  </span><span class="c1">#   e.g.: `messages.tx.handshake`</span>
+<span class="w">  </span><span class="c1"># NOTE: `message.{tx,rx}.recv_error` is always emitted</span>
+<span class="w">  </span><span class="c1">#message_metrics: false</span>
+
+<span class="w">  </span><span class="c1"># enables detailed counter metrics for lighthouse packets</span>
+<span class="w">  </span><span class="c1">#   e.g.: `lighthouse.rx.HostQuery`</span>
+<span class="w">  </span><span class="c1">#lighthouse_metrics: false</span>
+
+<span class="c1"># Handshake Manager Settings</span>
+<span class="c1">#handshakes:</span>
+<span class="w">  </span><span class="c1"># Handshakes are sent to all known addresses at each interval with a linear backoff,</span>
+<span class="w">  </span><span class="c1"># Wait try_interval after the 1st attempt, 2 * try_interval after the 2nd, etc, until the handshake is older than timeout</span>
+<span class="w">  </span><span class="c1"># A 100ms interval with the default 10 retries will give a handshake 5.5 seconds to resolve before timing out</span>
+<span class="w">  </span><span class="c1">#try_interval: 100ms</span>
+<span class="w">  </span><span class="c1">#retries: 20</span>
+<span class="w">  </span><span class="c1"># trigger_buffer is the size of the buffer channel for quickly sending handshakes</span>
+<span class="w">  </span><span class="c1"># after receiving the response for lighthouse queries</span>
+<span class="w">  </span><span class="c1">#trigger_buffer: 64</span>
+
+
+<span class="c1"># Nebula security group configuration</span>
+<span class="nt">firewall</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Action to take when a packet is not allowed by the firewall rules.</span>
+<span class="w">  </span><span class="c1"># Can be one of:</span>
+<span class="w">  </span><span class="c1">#   `drop` (default): silently drop the packet.</span>
+<span class="w">  </span><span class="c1">#   `reject`: send a reject reply.</span>
+<span class="w">  </span><span class="c1">#     - For TCP, this will be a RST &quot;Connection Reset&quot; packet.</span>
+<span class="w">  </span><span class="c1">#     - For other protocols, this will be an ICMP port unreachable packet.</span>
+<span class="w">  </span><span class="nt">outbound_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop</span>
+<span class="w">  </span><span class="nt">inbound_action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop</span>
+
+<span class="w">  </span><span class="nt">conntrack</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tcp_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12m</span>
+<span class="w">    </span><span class="nt">udp_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3m</span>
+<span class="w">    </span><span class="nt">default_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10m</span>
+
+<span class="w">  </span><span class="c1"># The firewall is default deny. There is no way to write a deny rule.</span>
+<span class="w">  </span><span class="c1"># Rules are comprised of a protocol, port, and one or more of host, group, or CIDR</span>
+<span class="w">  </span><span class="c1"># Logical evaluation is roughly: port AND proto AND (ca_sha OR ca_name) AND (host OR group OR groups OR cidr)</span>
+<span class="w">  </span><span class="c1"># - port: Takes `0` or `any` as any, a single number `80`, a range `200-901`, or `fragment` to match second and further fragments of fragmented packets (since there is no port available).</span>
+<span class="w">  </span><span class="c1">#   code: same as port but makes more sense when talking about ICMP, TODO: this is not currently implemented in a way that works, use `any`</span>
+<span class="w">  </span><span class="c1">#   proto: `any`, `tcp`, `udp`, or `icmp`</span>
+<span class="w">  </span><span class="c1">#   host: `any` or a literal hostname, ie `test-host`</span>
+<span class="w">  </span><span class="c1">#   group: `any` or a literal group name, ie `default-group`</span>
+<span class="w">  </span><span class="c1">#   groups: Same as group but accepts a list of values. Multiple values are AND&#39;d together and a certificate would have to contain all groups to pass</span>
+<span class="w">  </span><span class="c1">#   cidr: a CIDR, `0.0.0.0/0` is any.</span>
+<span class="w">  </span><span class="c1">#   ca_name: An issuing CA name</span>
+<span class="w">  </span><span class="c1">#   ca_sha: An issuing CA shasum</span>
+
+<span class="w">  </span><span class="nt">outbound</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Allow all outbound traffic from this node</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">any</span>
+<span class="w">      </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">any</span>
+<span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">any</span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GROUPNAME</span>
+
+<span class="w">  </span><span class="nt">inbound</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Allow icmp between any nebula hosts</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">any</span>
+<span class="w">      </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icmp</span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GROUPNAME</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">      </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GROUPNAME</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">      </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GROUPNAME</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22</span>
+<span class="w">      </span><span class="nt">proto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GROUPNAME</span>
+</code></pre></div>
+<h3 id="systemd-service">Systemd Service</h3>
+<blockquote>
+<p>/etc/systemd/system/nebula.service</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">nebula</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<span class="na">StartLimitIntervalSec</span><span class="o">=</span><span class="s">0</span>
+
+<span class="k">[Service]</span>
+<span class="na">CapabilityBoundingSet</span><span class="o">=</span><span class="s">CAP_NET_ADMIN</span>
+<span class="na">AmbientCapabilities</span><span class="o">=</span><span class="s">CAP_NET_ADMIN</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/snap/nebula/current/bin/nebula -config /etc/nebula/config.yaml</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">1</span>
+<span class="na">User</span><span class="o">=</span><span class="s">pi</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</code></pre></div>
+<ul>
+<li><code>sudo systemctl enable nebula.service</code></li>
+<li><code>sudo systemctl start nebula.service</code></li>
+<li><code>sudo systemctl status nebula.service</code></li>
+<li><code>journalctl -xeu nebula.service</code></li>
+</ul>
 <p><a href="../../../reference/systemd/">systemd unit file</a></p>
+<h3 id="certificate-renewal">Certificate renewal</h3>
+<ul>
+<li>Resign certificate from server that contains ca.key</li>
+</ul>
+<div class="highlight"><pre><span></span><code>nebula-cert<span class="w"> </span>sign<span class="w"> </span>-name<span class="w"> </span><span class="nv">$HOSTNAME</span><span class="w"> </span>-ip<span class="w"> </span><span class="s2">&quot;192.168.100.XX/24&quot;</span><span class="w"> </span>-groups<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOSTNAME</span><span class="s2">,</span><span class="nv">$GROUPNAME</span><span class="s2">&quot;</span>
+</code></pre></div>
+<ul>
+<li>Set calendar reminder for expire date</li>
+<li>Distribute new <code>hostname.crt</code>, <code>hostname.key</code>, <code>ca.crt</code> files to clients</li>
+</ul>
 
 
 
