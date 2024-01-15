@@ -4,7 +4,7 @@
 
 > /etc/systemd/system/nebula.service
 
-```
+```ini
 [Unit]
 Description=nebula
 After=network.target
