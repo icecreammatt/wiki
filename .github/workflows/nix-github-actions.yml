@@ -25,7 +25,7 @@ jobs:
       - run: git checkout gh-pages
       - run: rm -fr docs
       - run: cp -r ./result/www docs
-      - run: echo "wiki.c4er.com" > docs/CNAME
+      - run: echo "wiki.c4er.com" > ./docs/CNAME
       - run: git add docs
       - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
       - run: git config --global user.email "actions.bot@github.com"
