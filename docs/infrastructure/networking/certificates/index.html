@@ -393,6 +393,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-pem-file-for-haproxy" class="md-nav__link">
+    Creating pem file for haproxy
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -536,6 +543,26 @@
             Reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/netstat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    netstat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -700,6 +727,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-pem-file-for-haproxy" class="md-nav__link">
+    Creating pem file for haproxy
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -741,6 +775,9 @@ ls<span class="w"> </span>.lego/certificates/
 </code></pre></div>
 <p>Copy <em>.crt and </em>.key to Caddy, HAProxy, Nginx config directory.</p>
 <p><a href="https://go-acme.github.io/lego/">lego</a></p>
+<h2 id="creating-pem-file-for-haproxy">Creating pem file for haproxy</h2>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>domain.com.crt<span class="w"> </span>domain.com.key<span class="w"> </span>&gt;<span class="w"> </span>combined.pem
+</code></pre></div>
 
 
 
