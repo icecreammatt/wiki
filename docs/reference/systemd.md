@@ -1,6 +1,6 @@
 # systemd
 
-## Octoprint
+## Sample unit file
 
 > /etc/systemd/system/nebula.service
 
