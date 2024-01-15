@@ -1,7 +1,9 @@
 # systemd
 
 ## Octoprint
+
 > /etc/systemd/system/nebula.service
+
 ```
 [Unit]
 Description=nebula
@@ -20,3 +22,16 @@ Type=simple
 [Install]
 WantedBy=multi-user.target
 ```
+
+## systemd commands
+
+- `sudo systemctl status service`
+- `sudo systemctl enable service`
+- `sudo systemctl disable service`
+- `sudo systemctl restart service`
+- `sudo systemctl start service`
+- `sudo systemctl stop service`
+
+## journalctl
+
+- `journalctl -xeu service`
