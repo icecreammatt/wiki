@@ -568,6 +568,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#systemd-commands" class="md-nav__link">
+    systemd commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journalctl" class="md-nav__link">
+    journalctl
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -700,6 +714,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#systemd-commands" class="md-nav__link">
+    systemd commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journalctl" class="md-nav__link">
+    journalctl
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -726,7 +754,8 @@
 <h1 id="systemd">systemd</h1>
 <h2 id="octoprint">Octoprint</h2>
 <blockquote>
-<p>/etc/systemd/system/nebula.service
+<p>/etc/systemd/system/nebula.service</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code>[Unit]
 Description=nebula
 After=network.target
@@ -743,8 +772,20 @@ Type=simple
 
 [Install]
 WantedBy=multi-user.target
-</code></pre></div></p>
-</blockquote>
+</code></pre></div>
+<h2 id="systemd-commands">systemd commands</h2>
+<ul>
+<li><code>sudo systemctl status service</code></li>
+<li><code>sudo systemctl enable service</code></li>
+<li><code>sudo systemctl disable service</code></li>
+<li><code>sudo systemctl restart service</code></li>
+<li><code>sudo systemctl start service</code></li>
+<li><code>sudo systemctl stop service</code></li>
+</ul>
+<h2 id="journalctl">journalctl</h2>
+<ul>
+<li><code>journalctl -xeu service</code></li>
+</ul>
 
 
 
