@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../asahi/">
+        <link rel="prev" href="../../infrastructure/servers/">
       
       
-        <link rel="next" href="../nix/">
+        <link rel="next" href="../netstat/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>netstat - Wiki</title>
+        <title>Asahi - Wiki</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#netstat" class="md-skip">
+        <a href="#asahi" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              netstat
+              Asahi
             
           </span>
         </div>
@@ -494,26 +494,6 @@
                 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../asahi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Asahi
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -529,7 +509,7 @@
           
   
   <span class="md-ellipsis">
-    netstat
+    Asahi
   </span>
   
 
@@ -540,7 +520,7 @@
         
   
   <span class="md-ellipsis">
-    netstat
+    Asahi
   </span>
   
 
@@ -562,8 +542,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-ports-that-are-open" class="md-nav__link">
-    Check ports that are open
+  <a href="#keyboard-backlight" class="md-nav__link">
+    keyboard backlight
   </a>
   
 </li>
@@ -572,6 +552,26 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../netstat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    netstat
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -734,8 +734,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#check-ports-that-are-open" class="md-nav__link">
-    Check ports that are open
+  <a href="#keyboard-backlight" class="md-nav__link">
+    keyboard backlight
   </a>
   
 </li>
@@ -755,7 +755,7 @@
                   
 
   
-    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/reference/netstat.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/reference/asahi.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
     </a>
@@ -763,14 +763,10 @@
   
 
 
-<h1 id="netstat">netstat</h1>
-<h2 id="check-ports-that-are-open">Check ports that are open</h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>netstat<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:443
-
-<span class="c1"># or </span>
-sudo<span class="w"> </span>netstat<span class="w"> </span>--tcp<span class="w"> </span>--udp<span class="w"> </span>--listening<span class="w"> </span>--program<span class="w"> </span>--numeric
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ss<span class="w"> </span>-tunl<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;(State|LISTEN)&quot;</span>
+<h1 id="asahi">Asahi</h1>
+<h2 id="keyboard-backlight">keyboard backlight</h2>
+<div class="highlight"><pre><span></span><code>sudo -s
+echo 10 &gt; /sys/class/leds/kbd_backlight/brightness
 </code></pre></div>
 
 
