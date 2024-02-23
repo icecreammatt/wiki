@@ -19,6 +19,8 @@
 | 192.168.100.13  | dockingbay94 |
 | 192.168.100.14  | octoprint    |
 | 192.168.100.15  | wololo       |
+| 192.168.100.30  | koality      |
+| 192.168.100.40  | m1 mini      |
  
 ## Setup client
 
