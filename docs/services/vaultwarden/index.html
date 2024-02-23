@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../reference/systemd/">
+        <link rel="prev" href="../hydra/">
       
       
-        <link rel="next" href="../vaultwarden/">
+        <link rel="next" href="../wiki/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Hydra - Wiki</title>
+        <title>Vaultwarden - Wiki</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hydra" class="md-skip">
+        <a href="#vaultwarden" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hydra
+              Vaultwarden
             
           </span>
         </div>
@@ -657,6 +657,26 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../hydra/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hydra
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -672,7 +692,7 @@
           
   
   <span class="md-ellipsis">
-    Hydra
+    Vaultwarden
   </span>
   
 
@@ -683,7 +703,7 @@
         
   
   <span class="md-ellipsis">
-    Hydra
+    Vaultwarden
   </span>
   
 
@@ -705,16 +725,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setting-basic-manual-job" class="md-nav__link">
-    Setting basic manual job
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#flake-setup" class="md-nav__link">
-    Flake setup
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -722,26 +748,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vaultwarden/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Vaultwarden
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -801,16 +807,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setting-basic-manual-job" class="md-nav__link">
-    Setting basic manual job
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    Notes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#flake-setup" class="md-nav__link">
-    Flake setup
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -829,7 +841,7 @@
                   
 
   
-    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/services/hydra.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/services/vaultwarden.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
     </a>
@@ -837,63 +849,13 @@
   
 
 
-<h1 id="hydra">Hydra</h1>
-<h2 id="setting-basic-manual-job">Setting basic manual job</h2>
+<h1 id="vaultwarden">Vaultwarden</h1>
+<h2 id="backup">Backup</h2>
+<p><code>/var/lib/bitwarden_rs/*</code></p>
+<h3 id="notes">Notes</h3>
 <ul>
-<li>Admin &gt; Create Project</li>
-<li>Fill out basic info</li>
-<li>Actions &gt; Create Jobset</li>
+<li>https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>State</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>identifier</td>
-<td>main</td>
-</tr>
-<tr>
-<td>type</td>
-<td>flake</td>
-</tr>
-<tr>
-<td>description</td>
-<td>flake</td>
-</tr>
-<tr>
-<td>description</td>
-<td>repo url ex: https://github.com/icecreammatt/wiki</td>
-</tr>
-<tr>
-<td>flake URI</td>
-<td>git url ex: github:icecreammatt/wiki</td>
-</tr>
-<tr>
-<td>check interval</td>
-<td>0</td>
-</tr>
-<tr>
-<td>schedules shares</td>
-<td>1</td>
-</tr>
-<tr>
-<td>evals to keep</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Actions &gt; Evaluate Jobset</li>
-<li>Home &gt; Projects &gt; <Project> &gt; Evaluations &gt; #</li>
-</ul>
-<h2 id="flake-setup">Flake setup</h2>
-<p>Add new value to outputs. See wiki or tape-encoder for examples</p>
-<div class="highlight"><pre><span></span><code>    hydraJobs.&quot;tester&quot; = self.defaultPackage;
-</code></pre></div>
 
 
 
