@@ -35,3 +35,4 @@ WantedBy=multi-user.target
 ## journalctl
 
 - `journalctl -xeu service`
+- `journalctl --user -xeu service -f | tspin`
