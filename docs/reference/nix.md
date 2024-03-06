@@ -6,6 +6,7 @@
 - [https://mipmip.github.io/home-manager-option-search/](https://mipmip.github.io/home-manager-option-search/)
 - [https://lazamar.co.uk/nix-versions/](https://lazamar.co.uk/nix-versions/)
 - [https://www.nixhub.io/](https://www.nixhub.io/)
+- [https://jorel.dev/NixOS4Noobs/intro.html](https://jorel.dev/NixOS4Noobs/intro.html)
 
 ## OCI
 
