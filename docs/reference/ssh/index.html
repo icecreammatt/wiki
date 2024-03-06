@@ -628,6 +628,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#socks-proxy" class="md-nav__link">
+    socks proxy
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -800,6 +807,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#socks-proxy" class="md-nav__link">
+    socks proxy
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -826,13 +840,31 @@
 <h1 id="ssh">ssh</h1>
 <h2 id="agent-forwarding">agent forwarding</h2>
 <blockquote>
-<p>fish shell
-```fish
-eval (ssh-agent -c)
+<p>fish shell</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nb">eval</span> <span class="o">(</span>ssh-agent -c<span class="o">)</span>
 ssh-add ~/.ssh/id_ed25519
-ssh $hostname
-ssh-add -D # to clear keys
-````</p>
+ssh <span class="nv">$hostname</span>
+ssh-add -D <span class="c"># to clear keys</span>
+</code></pre></div>
+<h2 id="socks-proxy">socks proxy</h2>
+<blockquote>
+<p>Handy when needing to make edits to mikrotik router from wifi VLAN by proxying web from Mini over VPN</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>ssh -D <span class="m">1337</span> -q -C -N user@hostname
+</code></pre></div>
+<ul>
+<li>In Firefox settings search <code>socks</code></li>
+<li>Manual Proxy config</li>
+<li>SOCKS Host: <code>localhost</code> Port <code>1337</code></li>
+<li>SOCKS V5</li>
+<li>Check <code>Proxy DNS when using SOCKS v5</code></li>
+</ul>
+<p>Browsing should now work from laptop but proxied over VPN so I can access router settings</p>
+<blockquote>
+<p>Resources
+- https://superuser.com/questions/1308495/how-to-create-a-socks-proxy-with-ssh
+- https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/</p>
 </blockquote>
 
 
