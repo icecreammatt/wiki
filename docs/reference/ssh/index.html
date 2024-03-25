@@ -675,6 +675,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tunnel-remote-app-from-remote-host-locally" class="md-nav__link">
+    tunnel remote app from remote host locally
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -854,6 +861,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tunnel-remote-app-from-remote-host-locally" class="md-nav__link">
+    tunnel remote app from remote host locally
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -906,6 +920,15 @@ ssh-add -D <span class="c"># to clear keys</span>
 - https://superuser.com/questions/1308495/how-to-create-a-socks-proxy-with-ssh
 - https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/</p>
 </blockquote>
+<h2 id="tunnel-remote-app-from-remote-host-locally">tunnel remote app from remote host locally</h2>
+<blockquote>
+<p><em>Use this to make edits on syncthing from headless server</em></p>
+</blockquote>
+<ul>
+<li><code>ssh -L 8080:localhost:8384 user@hostname</code></li>
+<li>8080 is the port to visit on localhost</li>
+<li>8384 is the port the web app is running on the remote host</li>
+</ul>
 
 
 
