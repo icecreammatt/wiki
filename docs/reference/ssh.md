@@ -30,3 +30,11 @@ Browsing should now work from laptop but proxied over VPN so I can access router
 > Resources
 - https://superuser.com/questions/1308495/how-to-create-a-socks-proxy-with-ssh
 - https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/
+
+## tunnel remote app from remote host locally
+
+> _Use this to make edits on syncthing from headless server_
+
+- `ssh -L 8080:localhost:8384 user@hostname`
+- 8080 is the port to visit on localhost
+- 8384 is the port the web app is running on the remote host
