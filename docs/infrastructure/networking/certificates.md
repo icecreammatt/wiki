@@ -21,9 +21,12 @@ ls .lego/certificates/
 
 Copy *.crt and *.key to Caddy, HAProxy, Nginx config directory.
 
+`sudo chown caddy *.crt`
+`sudo chown caddy *.key`
+
 [lego](https://go-acme.github.io/lego/)
 
-## Creating pem file for haproxy
+## Creating pem file for haproxy (octoprint)
 
 ```bash
 cat domain.com.crt domain.com.key > combined.pem
