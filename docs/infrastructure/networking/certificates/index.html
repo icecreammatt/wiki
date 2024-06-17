@@ -394,8 +394,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-pem-file-for-haproxy" class="md-nav__link">
-    Creating pem file for haproxy
+  <a href="#creating-pem-file-for-haproxy-octoprint" class="md-nav__link">
+    Creating pem file for haproxy (octoprint)
   </a>
   
 </li>
@@ -868,8 +868,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-pem-file-for-haproxy" class="md-nav__link">
-    Creating pem file for haproxy
+  <a href="#creating-pem-file-for-haproxy-octoprint" class="md-nav__link">
+    Creating pem file for haproxy (octoprint)
   </a>
   
 </li>
@@ -914,8 +914,10 @@ lego<span class="w"> </span><span class="se">\ </span>
 ls<span class="w"> </span>.lego/certificates/
 </code></pre></div>
 <p>Copy <em>.crt and </em>.key to Caddy, HAProxy, Nginx config directory.</p>
+<p><code>sudo chown caddy *.crt</code>
+<code>sudo chown caddy *.key</code></p>
 <p><a href="https://go-acme.github.io/lego/">lego</a></p>
-<h2 id="creating-pem-file-for-haproxy">Creating pem file for haproxy</h2>
+<h2 id="creating-pem-file-for-haproxy-octoprint">Creating pem file for haproxy (octoprint)</h2>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>domain.com.crt<span class="w"> </span>domain.com.key<span class="w"> </span>&gt;<span class="w"> </span>combined.pem
 </code></pre></div>
 
