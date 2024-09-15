@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../..">
+        <link rel="prev" href="../certificates/">
       
       
-        <link rel="next" href="../port-scan/">
+        <link rel="next" href="../vpn/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Certificates - Wiki</title>
+        <title>Find ssh ports on network when IPs change - Wiki</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#certificates" class="md-skip">
+        <a href="#find-ssh-ports-on-network-when-ips-change" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Certificates
+              Find ssh ports on network when IPs change
             
           </span>
         </div>
@@ -339,6 +339,26 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../certificates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -350,72 +370,7 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Certificates
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Certificates
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lets-encrypt" class="md-nav__link">
-    Lets Encrypt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-pem-file-for-haproxy-octoprint" class="md-nav__link">
-    Creating pem file for haproxy (octoprint)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../port-scan/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -424,6 +379,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -874,28 +830,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lets-encrypt" class="md-nav__link">
-    Lets Encrypt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-pem-file-for-haproxy-octoprint" class="md-nav__link">
-    Creating pem file for haproxy (octoprint)
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -909,7 +843,7 @@
                   
 
   
-    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/infrastructure/networking/certificates.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/infrastructure/networking/port-scan.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
     </a>
@@ -917,29 +851,8 @@
   
 
 
-<h1 id="certificates">Certificates</h1>
-<h2 id="lets-encrypt">Lets Encrypt</h2>
-<p>Renewing SSL certificates (Expires every 90 days)</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#/usr/bin/env bash</span>
-
-<span class="nb">export</span><span class="w"> </span><span class="nv">CLOUDFLARE_DNS_API_TOKEN</span><span class="o">=</span>XXXXXXXX
-
-lego<span class="w"> </span><span class="se">\ </span>
---email<span class="w"> </span>email@domain.com<span class="w"> </span><span class="se">\ </span>
---dns<span class="w"> </span>cloudflare<span class="w"> </span><span class="se">\ </span>
---domains<span class="w"> </span><span class="s2">&quot;domain.com&quot;</span><span class="w"> </span><span class="se">\ </span>
---domains<span class="w"> </span><span class="s2">&quot;*.domain.com&quot;</span><span class="w"> </span><span class="se">\ </span>
---domains<span class="w"> </span><span class="s2">&quot;*.dev.domain.com&quot;</span><span class="w"> </span>run
-
-ls<span class="w"> </span>.lego/certificates/
-</code></pre></div>
-<p>Copy <em>.crt and </em>.key to Caddy, HAProxy, Nginx config directory.</p>
-<p><code>sudo chown caddy *.crt</code>
-<code>sudo chown caddy *.key</code></p>
-<p><a href="https://go-acme.github.io/lego/">lego</a></p>
-<h2 id="creating-pem-file-for-haproxy-octoprint">Creating pem file for haproxy (octoprint)</h2>
-<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>domain.com.crt<span class="w"> </span>domain.com.key<span class="w"> </span>&gt;<span class="w"> </span>combined.pem
-</code></pre></div>
+<h1 id="find-ssh-ports-on-network-when-ips-change">Find ssh ports on network when IPs change</h1>
+<p><code>sudo nmap -p 22 192.168.0.0/24</code></p>
 
 
 
