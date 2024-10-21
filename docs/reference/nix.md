@@ -21,3 +21,16 @@ OR
 
 docker run -p 80:80 wiki:latest
 ```
+
+## Custom Sha for overlay
+
+nix-prefetch fetchFromGitHub --owner icecreammatt --repo serpl --rev nix-flakes
+The fetcher will be called as follows:
+> fetchFromGitHub {
+>   owner = "icecreammatt";
+>   repo = "serpl";
+>   rev = "nix-flakes";
+>   sha256 = "sha256:0000000000000000000000000000000000000000000000000000";
+> }
+
+sha256-/pr/Tr26Sy7PYLGvEiGHtvzEwfag+sacbWTkDEieoZQ=
