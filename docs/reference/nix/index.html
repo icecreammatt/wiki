@@ -675,6 +675,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#custom-sha-for-overlay" class="md-nav__link">
+    Custom Sha for overlay
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -894,6 +901,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#custom-sha-for-overlay" class="md-nav__link">
+    Custom Sha for overlay
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -937,6 +951,18 @@ OR
 
 docker run -p 80:80 wiki:latest
 </code></pre></div>
+<h2 id="custom-sha-for-overlay">Custom Sha for overlay</h2>
+<p>nix-prefetch fetchFromGitHub --owner icecreammatt --repo serpl --rev nix-flakes
+The fetcher will be called as follows:</p>
+<blockquote>
+<p>fetchFromGitHub {
+  owner = "icecreammatt";
+  repo = "serpl";
+  rev = "nix-flakes";
+  sha256 = "sha256:0000000000000000000000000000000000000000000000000000";
+}</p>
+</blockquote>
+<p>sha256-/pr/Tr26Sy7PYLGvEiGHtvzEwfag+sacbWTkDEieoZQ=</p>
 
 
 
