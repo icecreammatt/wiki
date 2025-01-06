@@ -6,7 +6,7 @@
 
 | IP              | Host         |
 |-----------------|--------------|
-| 192.168.100.1   | lighthouse   |
+| 192.168.100.2   | lighthouse   |
 
 
 ### Static VPN Client IPs
