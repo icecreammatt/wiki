@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../firefox/">
+        <link rel="prev" href="../asahi/">
       
       
-        <link rel="next" href="../git/">
+        <link rel="next" href="../code/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Rename shortcut - Wiki</title>
+        <title>atuin - Wiki</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rename-shortcut" class="md-skip">
+        <a href="#atuin" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rename shortcut
+              atuin
             
           </span>
         </div>
@@ -534,9 +534,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../atun/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    atuin
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -545,6 +565,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#search-history-for-specific-command" class="md-nav__link">
+    search history for specific command
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -614,18 +661,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../fish/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -634,7 +672,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -930,6 +967,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#search-history-for-specific-command" class="md-nav__link">
+    search history for specific command
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -943,7 +995,7 @@
                   
 
   
-    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/reference/fish.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/icecreammatt/wiki/edit/main/docs/reference/atun.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
     </a>
@@ -951,15 +1003,10 @@
   
 
 
-<h1 id="rename-shortcut">Rename shortcut</h1>
-<blockquote>
-<p>Before
-<div class="highlight"><pre><span></span><code>$ mv ~/file/path/long/old.md ~/file/path/long/new.md
-</code></pre></div></p>
-<p>After
-<div class="highlight"><pre><span></span><code>$ mv ~/file/path/long/{old,new}.md
-</code></pre></div></p>
-</blockquote>
+<h1 id="atuin">atuin</h1>
+<h2 id="search-history-for-specific-command">search history for specific command</h2>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>atuin<span class="w"> </span><span class="nb">history</span><span class="w"> </span>list<span class="w"> </span>--cmd-only<span class="w"> </span><span class="p">|</span><span class="w"> </span>rg<span class="w"> </span>-e<span class="w"> </span>^jj<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</code></pre></div>
 
 
 
