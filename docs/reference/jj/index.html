@@ -709,6 +709,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pushing" class="md-nav__link">
+    Pushing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -1016,6 +1023,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pushing" class="md-nav__link">
+    Pushing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -1100,6 +1114,11 @@ $<span class="w"> </span>jj<span class="w"> </span>split
 </code></pre></div>
 <h2 id="initialize-repo">Initialize repo</h2>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>--git-repo<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>repo&gt;
+</code></pre></div>
+<h2 id="pushing">Pushing</h2>
+<div class="highlight"><pre><span></span><code>jj<span class="w"> </span>bookmark<span class="w"> </span><span class="nb">set</span><span class="w"> </span>main<span class="w"> </span>-r<span class="w"> </span>@-<span class="w">     </span><span class="c1"># previous change or @ for current</span>
+jj<span class="w"> </span>bookmark<span class="w"> </span>track<span class="w"> </span>main@origin<span class="w">  </span><span class="c1"># only need one time per branch</span>
+jj<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-r<span class="w"> </span>@-
 </code></pre></div>
 <h2 id="examples">Examples</h2>
 <p>https://github.com/jj-vcs/jj/blob/main/docs/revsets.md#examples</p>
