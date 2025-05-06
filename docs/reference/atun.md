@@ -1,7 +1,0 @@
-# atuin
-
-## search history for specific command
-
-```bash
-$ atuin history list --cmd-only | rg -e ^jj | sort | uniq
-```
