@@ -54,13 +54,14 @@ $ jj bookmark set branch
 ```
 
 ## References
-- https://zerowidth.com/2025/what-ive-learned-from-jj/
-- https://zerowidth.com/2025/jj-tips-and-tricks/
-- https://steveklabnik.github.io/jujutsu-tutorial/
-- https://jj-vcs.github.io/jj/latest/install-and-setup/
-- https://jj-vcs.github.io/jj/v0.13.0/tutorial/
-- https://v5.chriskrycho.com/essays/jj-init/
-- https://ofcr.se/jujutsu-merge-workflow
-- https://github.com/jj-vcs/jj/blob/main/docs/git-comparison.md#the-index
-- https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/
-- https://benjamincongdon.me/blog/2021/12/07/Branchless-Git/
+- [what-ive-learned-from-jj](https://zerowidth.com/2025/what-ive-learned-from-jj/)
+- [jj-tips-and-tricks](https://zerowidth.com/2025/jj-tips-and-tricks/)
+- [jujutsu-tutorial](https://steveklabnik.github.io/jujutsu-tutorial/)
+- [install-and-setup](https://jj-vcs.github.io/jj/latest/install-and-setup/)
+- [tutorial](https://jj-vcs.github.io/jj/v0.13.0/tutorial/)
+- [jj-init](https://v5.chriskrycho.com/essays/jj-init/)
+- [jujutsu-merge-workflow](https://ofcr.se/jujutsu-merge-workflow)
+- [git-comparison.md#the-index](https://github.com/jj-vcs/jj/blob/main/docs/git-comparison.md#the-index)
+- [In-Praise-of-Stacked-PRs](https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/)
+- [Branchless-Git](https://benjamincongdon.me/blog/2021/12/07/Branchless-Git/)
+- [Working branches and the JJ "way"](https://github.com/jj-vcs/jj/discussions/2425)
