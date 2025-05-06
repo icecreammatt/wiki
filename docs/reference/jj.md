@@ -33,6 +33,13 @@ $ jj split
 $ git init --git-repo <path to repo>
 ```
 
+## Pushing
+```bash
+jj bookmark set main -r @-     # previous change or @ for current
+jj bookmark track main@origin  # only need one time per branch
+jj git push -r @-
+```
+
 ## Examples
 https://github.com/jj-vcs/jj/blob/main/docs/revsets.md#examples
 
