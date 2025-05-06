@@ -12,6 +12,7 @@ $ jj edit xyz # edit existing change
 $ jj show xyz # show info on change
 $ jj diff # show diff between last change
 $ jj describe -m "message"
+$ jj describe @- -m "docs: add more references" # edit message on previous change
 $ jj -r 'all()' # show all commits
 $ jj log -r 'tags() | bookmarks()' # show tags and bookmarks
 $ jj push --allow-new --remote origin # push changes
@@ -72,3 +73,4 @@ $ jj bookmark set branch
 - [In-Praise-of-Stacked-PRs](https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/)
 - [Branchless-Git](https://benjamincongdon.me/blog/2021/12/07/Branchless-Git/)
 - [Working branches and the JJ "way"](https://github.com/jj-vcs/jj/discussions/2425)
+- [some-hot-jj-tips](https://willhbr.net/2024/05/26/some-hot-jj-tips/)
