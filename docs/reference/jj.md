@@ -70,6 +70,20 @@ $ jj log -r 'ancestors(@) & main::'
 $ jj bookmark set branch
 ```
 
+## Recover or undo changes that were a while ago
+
+```bash
+$ jj op log
+# find the operational state you wish to restore to
+$ jj op restore <operation id>
+```
+
+## Inspect what an operation did
+
+```bash
+$ jj op show <operation id>
+```
+
 ## References
 - [what-ive-learned-from-jj](https://zerowidth.com/2025/what-ive-learned-from-jj/)
 - [jj-tips-and-tricks](https://zerowidth.com/2025/jj-tips-and-tricks/)
