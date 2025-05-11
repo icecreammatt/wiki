@@ -74,3 +74,4 @@ $ jj bookmark set branch
 - [Branchless-Git](https://benjamincongdon.me/blog/2021/12/07/Branchless-Git/)
 - [Working branches and the JJ "way"](https://github.com/jj-vcs/jj/discussions/2425)
 - [some-hot-jj-tips](https://willhbr.net/2024/05/26/some-hot-jj-tips/)
+- [mega merge and absorbe](https://v5.chriskrycho.com/journal/jujutsu-megamerges-and-jj-absorb/)
