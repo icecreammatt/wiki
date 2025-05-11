@@ -24,8 +24,17 @@ $ jj git init --git-repo .
 $ jj git remote add origin git@github.com:user/repo.git
 $ jj descripion('search string') # search on commit messages
 $ jj squash -i -f xyz -t abc -i 
+$ jj squash -i --into x # squash into a specific change into the tree
 $ jj split
+$ jj new a b c # create new merge from existing changes
 
+```
+
+## New repo setup
+
+```bash
+git init
+jj git init --colocate
 ```
 
 ## Initialize repo
