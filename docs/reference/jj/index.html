@@ -702,6 +702,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#new-repo-setup" class="md-nav__link">
+    New repo setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#initialize-repo" class="md-nav__link">
     Initialize repo
   </a>
@@ -1016,6 +1023,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#new-repo-setup" class="md-nav__link">
+    New repo setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#initialize-repo" class="md-nav__link">
     Initialize repo
   </a>
@@ -1111,7 +1125,13 @@ $<span class="w"> </span>jj<span class="w"> </span>git<span class="w"> </span>in
 $<span class="w"> </span>jj<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:user/repo.git
 $<span class="w"> </span>jj<span class="w"> </span>descripion<span class="o">(</span><span class="s1">&#39;search string&#39;</span><span class="o">)</span><span class="w"> </span><span class="c1"># search on commit messages</span>
 $<span class="w"> </span>jj<span class="w"> </span>squash<span class="w"> </span>-i<span class="w"> </span>-f<span class="w"> </span>xyz<span class="w"> </span>-t<span class="w"> </span>abc<span class="w"> </span>-i<span class="w"> </span>
+$<span class="w"> </span>jj<span class="w"> </span>squash<span class="w"> </span>-i<span class="w"> </span>--into<span class="w"> </span>x<span class="w"> </span><span class="c1"># squash into a specific change into the tree</span>
 $<span class="w"> </span>jj<span class="w"> </span>split
+$<span class="w"> </span>jj<span class="w"> </span>new<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span><span class="c1"># create new merge from existing changes</span>
+</code></pre></div>
+<h2 id="new-repo-setup">New repo setup</h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>init
+jj<span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>--colocate
 </code></pre></div>
 <h2 id="initialize-repo">Initialize repo</h2>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>init<span class="w"> </span>--git-repo<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>repo&gt;
