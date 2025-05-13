@@ -751,6 +751,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recover-or-undo-changes-that-were-a-while-ago" class="md-nav__link">
+    Recover or undo changes that were a while ago
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect-what-an-operation-did" class="md-nav__link">
+    Inspect what an operation did
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1072,6 +1086,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recover-or-undo-changes-that-were-a-while-ago" class="md-nav__link">
+    Recover or undo changes that were a while ago
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspect-what-an-operation-did" class="md-nav__link">
+    Inspect what an operation did
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1153,6 +1181,14 @@ jj<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span
 <p>This locks the changes below from editing once pushed up</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>bookmark<span class="w"> </span><span class="nb">set</span><span class="w"> </span>branch
+</code></pre></div>
+<h2 id="recover-or-undo-changes-that-were-a-while-ago">Recover or undo changes that were a while ago</h2>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>op<span class="w"> </span>log
+<span class="c1"># find the operational state you wish to restore to</span>
+$<span class="w"> </span>jj<span class="w"> </span>op<span class="w"> </span>restore<span class="w"> </span>&lt;operation<span class="w"> </span>id&gt;
+</code></pre></div>
+<h2 id="inspect-what-an-operation-did">Inspect what an operation did</h2>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>op<span class="w"> </span>show<span class="w"> </span>&lt;operation<span class="w"> </span>id&gt;
 </code></pre></div>
 <h2 id="references">References</h2>
 <ul>
