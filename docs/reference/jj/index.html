@@ -751,6 +751,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#listing-bookmarks" class="md-nav__link">
+    Listing bookmarks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recover-or-undo-changes-that-were-a-while-ago" class="md-nav__link">
     Recover or undo changes that were a while ago
   </a>
@@ -1086,6 +1093,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#listing-bookmarks" class="md-nav__link">
+    Listing bookmarks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recover-or-undo-changes-that-were-a-while-ago" class="md-nav__link">
     Recover or undo changes that were a while ago
   </a>
@@ -1182,6 +1196,17 @@ jj<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span
 </blockquote>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>bookmark<span class="w"> </span><span class="nb">set</span><span class="w"> </span>branch
 </code></pre></div>
+<h2 id="listing-bookmarks">Listing bookmarks</h2>
+<blockquote>
+<p>Show all remote bookmarks by an author</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;remote_bookmarks() &amp; author(&quot;icecreammatt&quot;)&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>Show all with a given name
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;bookmarks(&quot;branch-name&quot;)&#39;</span>
+</code></pre></div></p>
+</blockquote>
 <h2 id="recover-or-undo-changes-that-were-a-while-ago">Recover or undo changes that were a while ago</h2>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>jj<span class="w"> </span>op<span class="w"> </span>log
 <span class="c1"># find the operational state you wish to restore to</span>
