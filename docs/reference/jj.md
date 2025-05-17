@@ -70,6 +70,19 @@ $ jj log -r 'ancestors(@) & main::'
 $ jj bookmark set branch
 ```
 
+## Listing bookmarks
+
+> Show all remote bookmarks by an author
+
+```bash
+$ jj -r 'remote_bookmarks() & author("icecreammatt")'
+```
+
+> Show all with a given name
+```bash
+$ jj -r 'bookmarks("branch-name")'
+```
+
 ## Recover or undo changes that were a while ago
 
 ```bash
