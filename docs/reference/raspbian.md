@@ -22,3 +22,16 @@ After editing config run below to apply
 ```bash
 $ labwc --reconfigure
 ```
+
+## uxplay
+
+Airplay from iPhone to RPI
+
+- `-avdec` to fix it not working
+- `-fs` fullscreen
+
+```bash
+sudo apt install uxplay
+uxplay -n garage -avdec -fs
+
+```
