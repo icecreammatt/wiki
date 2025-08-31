@@ -34,3 +34,7 @@ The fetcher will be called as follows:
 > }
 
 sha256-/pr/Tr26Sy7PYLGvEiGHtvzEwfag+sacbWTkDEieoZQ=
+
+# Package progress tracker
+
+[https://nixpkgs-tracker.ocfox.me/?pr=438640](https://nixpkgs-tracker.ocfox.me/?pr=438640)
